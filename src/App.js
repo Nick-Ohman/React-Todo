@@ -6,15 +6,10 @@ const toDo = [
   
     {
       task: 'Organize Garage',
-      id: 1528817077286,
+      id: 125,
       completed: false
     },
-    {
-      task: 'Bake Cookies',
-      id: 1528817084358,
-      completed: false
-    }
-  
+    
   
 ];
 class App extends React.Component {
@@ -33,7 +28,7 @@ class App extends React.Component {
   addItem = itemName => {
     const newItem ={
       task: itemName,
-      id: Date.now(),
+      id: Math.floor(Math.random() * 24 +1),
       completed: false,
 
     };
@@ -42,13 +37,30 @@ class App extends React.Component {
     })
   }
 
+  toggleItem = itemId =>{
+    console.log(itemId);
+    this.setState({
+      toDo: this.state.toDo.map(item => {
+        if (itemId === item.id){
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        }
+        return item;
+      })
+    })
+  }
+
+    
+
 
   render() {
     return (
       <div>
         <h2>Todo App!</h2>
-        <TodoForm todo={this.state.todo} addItem={this.addItem} />
-        <TodoList toDo={this.state.toDo}/>
+        <TodoForm todo={this.state.todo} addItem={this.addItem}  />
+        <TodoList toDo={this.state.toDo} toggleItem={this.toggleItem}/>
 
       </div>
     );
