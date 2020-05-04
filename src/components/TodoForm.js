@@ -15,7 +15,7 @@ class TodoForm extends React.Component {
         })
     }
 
-    submitForm =e => {
+    submitForm = e => {
         e.preventDefault();
         this.props.addItem(this.state.keyword);
         this.setState({
@@ -25,7 +25,7 @@ class TodoForm extends React.Component {
     }
 render() {
     return(
-        <form>
+        <form onSubmit={this.submitForm}>
             <input 
             
             onChange={this.handleChanges}
